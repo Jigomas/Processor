@@ -1,0 +1,5 @@
+sub;
+push 17;
+sub;
+push 17;
+halt;
