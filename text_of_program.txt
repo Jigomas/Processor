@@ -1,6 +1,5 @@
 push 14;
-push ax;
-push 7;
-div;
-add;
+pop bx;
+push bx;
+push bx;
 halt;

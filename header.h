@@ -10,7 +10,7 @@ typedef stk_elem_t canary_t;      //first is size
 */
 #define MAX_LEN_OF_RECEIVED_COMMAND 15
 #define AMOUNT_OF_REGISTERS 8
-
+#define MAX_AMOUNT_OF_RECEIVED_CYMBOLS 1000
 #define DEBUG_MODE 1
 
 #if DEBUG_MODE == 1
@@ -18,6 +18,13 @@ typedef stk_elem_t canary_t;      //first is size
 #else
     #define DEBUG(...)
 #endif
+
+struct spu_t {
+    char all_instructions[MAX_AMOUNT_OF_RECEIVED_CYMBOLS / 2][2];
+    int instr_ptr;
+    int amount_of_cymbols_readed;
+    stk_elem_t registers[AMOUNT_OF_REGISTERS];
+};
 
 
 
@@ -44,16 +51,18 @@ enum exit_codes {
 
 enum all_numbers_commands {
     PUSH =  1,
-    ADD  =  2,
-    SUB  =  3,
-    MULT =  4,
-    DIV  =  5,
-    OUT  =  6,
-    IN   =  7,
-    SQRT =  8,
-    SIN  =  9,
-    COS  = 10,
-    DUMP = 11,
+    POP  =  2,
+    ADD  =  3,
+    SUB  =  4,
+    MULT =  5,
+    DIV  =  6,
+    OUT  =  7,
+    IN   =  8,
+    SQRT =  9,
+    SIN  = 10,
+    COS  = 11,
+    DUMP = 12,
+    JUMP = 13,
     HALT =  0,
 };
 

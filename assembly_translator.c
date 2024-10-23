@@ -13,18 +13,20 @@
 int AssemblyTranslator(char *received_command[], int *next_is_command) {
     /*
     all_numbers_commands
-    PUSH = 1 ,
-    ADD  = 2 ,
-    SUB  = 3 ,
-    MULT = 4 ,
-    DIV  = 5 ,
-    OUT  = 6 ,
-    IN   = 7 ,
-    SQRT = 8 ,
-    SIN  = 9 ,
-    COS  = 10,
-    DUMP = 11,
-    HALT = 0 ;
+    PUSH =  1,
+    POP  =  2,
+    ADD  =  3,
+    SUB  =  4,
+    MULT =  5,
+    DIV  =  6,
+    OUT  =  7,
+    IN   =  8,
+    SQRT =  9,
+    SIN  = 10,
+    COS  = 11,
+    DUMP = 12,
+    JUMP = 13,
+    HALT =  0,
     */
 
     while(1) {
@@ -35,6 +37,16 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
 
             (*received_command)[0] = 0;
             (*received_command)[1] = PUSH;
+            break;
+        }
+
+        if ( toupper((*received_command)[0]) == 'P' && toupper((*received_command)[1]) == 'O'
+          && toupper((*received_command)[2]) == 'P') {
+            *next_is_command = 0;
+            DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
+
+            (*received_command)[0] = 0;
+            (*received_command)[1] = POP;
             break;
         }
 
@@ -112,8 +124,8 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             *next_is_command = 1;
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
-            (*received_command)[0] = 0;
-            (*received_command)[1] = SIN;
+            (*received_command)[0] = 1;
+            (*received_command)[1] = 0;
             break;
         }
 
@@ -123,7 +135,7 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
             (*received_command)[0] = 1;
-            (*received_command)[1] = 0;
+            (*received_command)[1] = 1;
             break;
         }
 
@@ -133,7 +145,7 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
             (*received_command)[0] = 1;
-            (*received_command)[1] = 1;
+            (*received_command)[1] = 2;
             break;
         }
 
@@ -142,8 +154,8 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             *next_is_command = -1;
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
-            (*received_command)[0] = 1;
-            (*received_command)[1] = 2;
+            (*received_command)[0] = 0;
+            (*received_command)[1] = 0;
             break;
         }
 

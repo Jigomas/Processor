@@ -104,6 +104,7 @@ int StkVerifier(struct stk_t *stk) {
         }
         */
     )
+    
     return ALL_GOOD;
 }
 

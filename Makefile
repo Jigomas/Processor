@@ -27,7 +27,7 @@ clean:
 	rm *.o
 	rm *.exe
 
-g++ .\main.c .\verificator.c .\constructor-destructor.c .\push-pop.c .\assembly_translator.c .\reader_from_keyboard.c .\text_reader.c
+g++ .\main.c .\verificator.c .\constructor-destructor.c .\push-pop.c .\assembly_translator.c .\reader_from_keyboard.c .\text_reader.c .\spu_dumper.c
 
 
 push 5;
