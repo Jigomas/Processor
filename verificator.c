@@ -140,7 +140,7 @@ void StkDumper(struct stk_t *stk, const char* file, double line) {
 
     for (int i = 0; i < stk->capacity; i++) {
         //if (*(stk->data + i * sizeof(stk_elem_t) DEBUG(+ sizeof(canary_t)) ) != poison_elem)
-            printf("data[%d] = %lf\n", i + 1, *(stk_elem_t *)((char *)stk->data + i * sizeof(stk_elem_t) DEBUG(+ sizeof(canary_t)) ));
+            printf("data[%d] = %d\n", i + 1, *(stk_elem_t *)((char *)stk->data + i * sizeof(stk_elem_t) DEBUG(+ sizeof(canary_t)) ));
     }
     DEBUG(printf("\n");)
 

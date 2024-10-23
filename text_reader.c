@@ -27,18 +27,13 @@ int TextReader() {
         for (int i = 0; i < MAX_LEN_OF_RECEIVED_COMMAND; i ++)
             received_command[i] = 0;
 
-        while ( (flag != ' ') && flag != ';' && index < MAX_LEN_OF_RECEIVED_COMMAND) {
+        while ( (flag != ' ') && flag != ';'  && flag != EOF && index < MAX_LEN_OF_RECEIVED_COMMAND) {
             is_sth_readed = fscanf(file_to_read, "%c", &received_command[index]);
             flag = received_command[index];
-            fprintf(stderr, "%c", received_command[index]);
             index ++;
         }
-         if (flag == ';')
+         if (flag == ';' || flag == EOF)
             is_sth_readed = fscanf(file_to_read, "%c", &flag);
-
-
-
-        fprintf(stderr, "\n\n");
 
 
 
@@ -53,10 +48,16 @@ int TextReader() {
             for (int i = 0; i < 2; i++)
                 fprintf(file_to_write, "%d", received_command[i]);
             fprintf(file_to_write, " ");
+        }
 
+        else if (index > 3) {
+            printf("Please write 2-digit numbers in commands\n");
+            return ERROR;
         }
 
         else if (next_is_command == 0 && received_command[0] != EOF ) {
+            for (int j = index; j < 3; j++)
+                fprintf(file_to_write, "%c", '0');
             for (int i = 0; i < index - 1; i++)
                 fprintf(file_to_write, "%c", received_command[i]);
             fprintf(file_to_write, " ");
@@ -75,3 +76,4 @@ int TextReader() {
     fclose(file_to_write);
     return ALL_GOOD;
 }
+

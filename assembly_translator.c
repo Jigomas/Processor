@@ -122,8 +122,8 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             *next_is_command = 1;
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
-            (*received_command)[0] = '1';
-            (*received_command)[1] = '0';
+            (*received_command)[0] = 1;
+            (*received_command)[1] = 0;
             break;
         }
 
@@ -132,8 +132,8 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             *next_is_command = 1;
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
-            (*received_command)[0] = '1';
-            (*received_command)[1] = '1';
+            (*received_command)[0] = 1;
+            (*received_command)[1] = 1;
             break;
         }
 
@@ -142,8 +142,8 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             *next_is_command = -1;
             DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
 
-            (*received_command)[0] = '1';
-            (*received_command)[1] = '2';
+            (*received_command)[0] = 1;
+            (*received_command)[1] = 2;
             break;
         }
 

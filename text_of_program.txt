@@ -1,5 +1,6 @@
-sub;
-push 17;
-sub;
-push 17;
+push 14;
+push ax;
+push 7;
+div;
+add;
 halt;
