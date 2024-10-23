@@ -182,7 +182,9 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                 else {
                     StkPush(stk, (spu.registers)[adress_of_register]);
                 }
+
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -191,7 +193,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
             case POP: {
                 spu.instr_ptr += 1;
                 int adress_of_register = CheckIfRegister(spu);
-                printf("%d\n", adress_of_register);
+
                 if (adress_of_register == -1) { //kostyl
                     spu.instr_ptr -= 1;
                     StkPop(stk, 0); //kostyl
@@ -201,7 +203,9 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                     (spu.registers)[adress_of_register] = *(stk_elem_t *)((char *)stk->data +
                                 (stk->size - 1) * sizeof(stk_elem_t) DEBUG(+ sizeof(canary_t)));
                 }
+
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -217,6 +221,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                 StkPush(stk, first_number + second_number);
 
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -232,6 +237,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                 StkPush(stk, first_number - second_number);
 
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -247,6 +253,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                 StkPush(stk, first_number * second_number);
 
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -262,6 +269,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                 StkPush(stk, first_number / second_number);
 
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -272,6 +280,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                                 (stk->size - 1) * sizeof(stk_elem_t) DEBUG(+ sizeof(canary_t))));
 
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -289,6 +298,7 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
                 StkPush(stk, sqrt(first_number));
 
                 spu.instr_ptr += 1;
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;
@@ -303,9 +313,19 @@ int RunOfProcessor(struct stk_t *stk, int exit_code) {
             }
 
             case DUMP: {
-                StkDumper(stk, __FILE__, __LINE__);
-
                 spu.instr_ptr += 1;
+
+                DEBUG(StkDumper(stk, __FILE__, __LINE__);)
+                SpuDumper(spu);
+                continue;
+            }
+
+            case JUMP: {
+                spu.instr_ptr += 1;
+
+                spu.instr_ptr =  ((stk_elem_t)*(char*)((char*)spu.all_instructions + (4 * spu.instr_ptr)     * sizeof(char)) - '0') * 10
+                                + (stk_elem_t)*(char*)((char*)spu.all_instructions + (4 * spu.instr_ptr + 1) * sizeof(char)) - '0';
+
                 DEBUG(StkDumper(stk, __FILE__, __LINE__);)
                 SpuDumper(spu);
                 continue;

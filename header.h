@@ -28,6 +28,11 @@ struct spu_t {
 
 
 
+struct labels_t {
+    char name[MAX_LEN_OF_RECEIVED_COMMAND];
+    int address_to_move;
+};
+
 struct stk_t {
     DEBUG(canary_t stk_r_canary;)
 

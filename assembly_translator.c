@@ -149,6 +149,16 @@ int AssemblyTranslator(char *received_command[], int *next_is_command) {
             break;
         }
 
+        if ( toupper((*received_command)[0]) == 'J' && toupper((*received_command)[1]) == 'U'
+          && toupper((*received_command)[2]) == 'M' && toupper((*received_command)[3]) == 'P') {
+            *next_is_command = 0;
+            DataClear(received_command, MAX_LEN_OF_RECEIVED_COMMAND);
+
+            (*received_command)[0] = 1;
+            (*received_command)[1] = 3;
+            break;
+        }
+
         if ( toupper((*received_command)[0]) == 'H' && toupper((*received_command)[1]) == 'A'
           && toupper((*received_command)[2]) == 'L' && toupper((*received_command)[3]) == 'T') {
             *next_is_command = -1;
