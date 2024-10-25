@@ -1,3 +1,5 @@
 push 14;
-jump 0;
+addref:
+push 12;
+jump addref:;
 halt;

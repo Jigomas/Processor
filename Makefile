@@ -37,3 +37,8 @@ push 3;
 sub;
 add 11;
 hlt;
+    for (int amount_to_go_through = 0; amount_to_go_through < 2; amount_to_go_through++) {
+        //FILE *file_to_clear = fopen("assembly_text.txt",  "w");
+        //fclose(file_to_clear);
+
+        FILE *file_to_write = fopen("assembly_text.txt",  "w");

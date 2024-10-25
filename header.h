@@ -9,6 +9,8 @@ typedef stk_elem_t canary_t;      //first is size
 #define DEBUG_MODE 1
 */
 #define MAX_LEN_OF_RECEIVED_COMMAND 15
+#define AMOUNT_OF_LABLES 10
+
 #define AMOUNT_OF_REGISTERS 8
 #define MAX_AMOUNT_OF_RECEIVED_CYMBOLS 1000
 #define DEBUG_MODE 1
@@ -29,8 +31,8 @@ struct spu_t {
 
 
 struct labels_t {
-    char name[MAX_LEN_OF_RECEIVED_COMMAND];
-    int address_to_move;
+    char name[AMOUNT_OF_LABLES][MAX_LEN_OF_RECEIVED_COMMAND];
+    char address_to_move[AMOUNT_OF_LABLES];
 };
 
 struct stk_t {
