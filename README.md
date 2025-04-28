@@ -1,40 +1,24 @@
-# Quadratic Equasions Solver
+# Processor
 
-For average Stack users
+Реализация эмулятора процессора на чистом C (стандарт C11).
 
-![изображение](ссылка)
+## Особенности
+- Полноценная эмуляция процессора
+- Поддержка оперативной памяти
+- Система регистров
+- Терминальный интерфейс
 
-# Introduction
- This program is supposed to visualise how does the stack works
+## Использование
+```c
+#include "processor.h"
 
-- Stk_Elem_t - is size of elements inside the stack
-- When the stack is full, its size doubles
-- When stack is only filled with its quarter, it Capacity becomes half its size
+Processor proc = {};
+ProcessorCtor(&proc);
 
+ExecuteProgram(&proc, "code.bin");  // Выполнение программы
+ProcessorDump(&proc);               // Состояние процессора
 
-# User guide
+ProcessorDtor(&proc);               // Очистка
 
-```
-git clone: [link](https://github.com/Jigomas/Stack)
-```
-
-You need to download this file and then open it in VS Code.
-Follow this guide: [link](https://code.visualstudio.com/docs/cpp/config-mingw)
-
-Then you need to Compile this file by pressing ` Ctrl + ~ ` ,
-and then typing in console theese two strings to  run it:
-(Copy it)
-
-```batch
-make all (and Then Press Enter)
-```
-
-```
-make run (and Then Press Enter)
-```
-
-##    Contact information about suggestions and bugs is here
-qwerty.tim_1941@mail.ru
-
-## Good Luck
-![изображение]()
+## Сборка
+gcc -std=c11 processor.c main.c -o processor
